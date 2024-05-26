@@ -58,7 +58,7 @@ Include a chart. Make sure to describe why you included the chart, and what patt
 
 I included this chart because it clearly shows the trend of total prison population for six most populous counties in California from 1970 to 2018. According to the chart, from 1970 to 2018, Los Angeles County had the highest total prison population. In addition, Santa Clara County had the lowest total prison population from 1970 to 1983 and 1995 to 2018, Riverside County had the lowest total prison population from 1984 to 1994.
 
-```{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, code = readLines("chart1.R")}
 ```
 
 ### Variable Comparison Chart
@@ -67,7 +67,7 @@ Include a chart. Make sure to describe why you included the chart, and what patt
 
 I include this chart because it shows the relationship between total population and total prison population. According to the graph, I think we cannot conclude that higher total population tend to have higher crime rate, since Los Angeles County had the highest total population but it did not have the highest ratio of total prison population to total population.
 
-```{r, echo = FALSE, code = readLines("chart2_example.R")}
+```{r, echo = FALSE, code = readLines("chart2.R")}
 ```
 
 ### Map
