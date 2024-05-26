@@ -3,69 +3,80 @@ title: "A3: Incarceration"
 output: html_document
 ---
 
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(tidyverse)
+library(dplyr)
+library(maps)
+library(mapproj)
+```
+
 ### Introduction
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
 
+The problem I am choosing to explore and analyze is the crime rate in California state. The variable I am choosing to analyze are county, total populations in prison, total county population, black_prison_pop, latinx_prison_pop, white_prison_pop, and other_race_prison_pop. I want to find out which county had the highest ratio of total prison population to total county population, and how the racial ratios in prisons differ.
+
 ### Summary Information
 
-Write a summary paragraph of findings that includes the 5 values calculated from your summary information R script
-
-These will likely be calculated using your DPLYR skills, answering questions such as: 
-
-- What is the average value of my variable across all the counties (in the current year)?
-- Where is my variable the highest / lowest?
-- How much has my variable change over the last N years?
-
-Feel free to calculate and report values that you find relevant. Again, remember that the purpose is to think about how these measure of incarceration vary by race.
+I calculated the mean total populations in prison, the highest number of total prison population in CA, the highest ratio of total prison population to total county population, the highest ratio of total black prison population to total county population, the highest ratio of total latinx prison population to total county population, the highest ratio of total white prison population to total county population, and the highest ratio of total other race prison population to total county population. The mean total populations in prison is around 1533 people. California's highest prison population was Los Angeles County, with 58068 people. Kings County had the highest ratio of total prison population to total population, which is 0.9909%. Alameda County had the highest ratio of black_prison_pop to total_prison_pop, which is 73.44%. San Benito County had the highest ratio of latinx_prison_pop to total_prison_pop, which is 80.62%. There were several counties had the ratio of white_prison_pop to total_prison_pop at 100% such as Mono, Sierra, Trinity, and Tuolumne County. Finally, Alpine County has the the highest ratio of other_race_prison_pop to total_prison_pop, which is 100%.
 
 ### The Dataset
 
 Who collected the data?  
-How was the data collected or generated?  
-Why was the data collected?  
-How many observations (rows) are in your data?  
+
+The data collected by the Vera Institute.
+
+How was the data collected or generated? 
+
+This dataset combines several sources: the National Corrections Reporting Program (NCRP), Deaths in Custody Reporting Program: Jail Populations (DCRP), Annual Survey of Jails (ASJ), and Census of Jails (COJ).
+
+Why was the data collected? 
+
+The reason for collecting this dataset is to provide people with incarceration data and related measures for county-level jails and detention centers across the United States.
+
+How many observations (rows) are in your data?
+
+There are 153811 observations in the data.
+
 How many features (columns) are in the data?  
-What, if any, ethical questions or questions of power do you need to consider when working with this data?  
+
+There are 36 features in the data.
+
+What, if any, ethical questions or questions of power do you need to consider when working with this data? 
+
+I think we need to consider about the bias in the dataset. I should read and learn related context in order to better understand and analyze the dataset.
+
 What are possible limitations or problems with this data?   (at least 200 words)
 
+In my opinion, there are several possible limitations and problems to this dataset. To start with, after I used the summary() function to check the dataset, I noticed there were tons of missing data in this dataset. Although I only used seven variables in the dataset, six of them had a lot of missing data. There are 67425 missing data in total_prison_pop, 104802 missing data in black_prison_pop, 114342 missing data in latinx_prison_pop, 122825 missing data in native_prison_pop, 123712 missing data in other_race_prison_pop, and 92953 missing data in white_prison_pop. A lack of a lot of data could lead to bias or inaccurate analysis and misunderstanding conclusions. When I calculate the ratio of the total prison population to the total population, in order to make my model run, I change all the missing data (NA) in total_prison_pop to 0. Therefore, the mean ratio rate I got in the end might be inaccurate since there are tons of missing data in the dataset. In addition, some jurisdictions may misreport or underreport data, which may result in inaccurate data sets.  Moreover, the categories of this data set are somewhat sensitive, and it is unknown whether the collector was neutral or had personal bias when collating and cleaning the data.
 
 ### Trends Over Time Chart
 
 Include a chart. Make sure to describe why you included the chart, and what patterns emerged
 
-The first chart that you will create and include will show the trend over time of your variable/topic. Think carefully about what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+I included this chart because it clearly shows the trend of total prison population for six most populous counties in California from 1970 to 2018. According to the chart, from 1970 to 2018, Los Angeles County had the highest total prison population. In addition, Santa Clara County had the lowest total prison population from 1970 to 1983 and 1995 to 2018, Riverside County had the lowest total prison population from 1984 to 1994.
 
-- Show more than one, but fewer than ~10 trends
-  - This may mean showing the same measure for different locations or different racial groups. Think carefully about a meaningful comparison of locations (e.g., the top 10 counties in a state, top 10 states, etc.)
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- You need a legend for your different line colors and a clear legend title
-
-When we say "clear" or "human readable" titles and labels, that means that you should not just display the variable name.
-
-Here's an example of how to run an R script inside an RMarkdown file:
-
-``````{r, echo = FALSE, code = readLines("chart1_example.R")}
+```{r, echo = FALSE, code = readLines("chart1.R")}
 ```
 
 ### Variable Comparison Chart
 
 Include a chart. Make sure to describe why you included the chart, and what patterns emerged
 
-The second chart that you will create and include will show how two different (continuous) variables are related to one another. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+I include this chart because it shows the relationship between total population and total prison population. According to the graph, I think we cannot conclude that higher total population tend to have higher crime rate, since Los Angeles County had the highest total population but it did not have the highest ratio of total prison population to total population.
 
-- You must have clear x and y axis labels
-- The chart needs a clear title 
-- If you choose to add a color encoding (not required), you need a legend for your different color and a clear legend title
+```{r, echo = FALSE, code = readLines("chart2.R")}
+```
 
 ### Map
 
 Include a chart. Make sure to describe why you included the chart, and what patterns emerged
 
-The last chart that you will create and include will show how a variable is distributed geographically. Again, think carefully about what such a comparison means and what you want to communicate to your user (you may have to find relevant trends in the dataset first!). Here are some requirements to help guide your design:
+I include this chart because it shows how the mean ratio of total prison population to total population is distributed geographically in California. According to the map, Kings, Yuba, 	
+Kern, Tehama, and Shasta County have higher mean ratio of total prison population to total population. Additionally, Alpine County has the lowest mean ratio rate.
 
-- Your map needs a title
-- Your color scale needs a legend with a clear label
-- Use a map based coordinate system to set the aspect ratio of your map
+```{r, echo = FALSE, code = readLines("map.R")}
+```
 
