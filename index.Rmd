@@ -3,15 +3,6 @@ title: "A3: Incarceration"
 output: html_document
 ---
 
-```{r setup, include=FALSE, echo = FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(ggplot2)
-library(tidyverse)
-library(dplyr)
-library(maps)
-library(mapproj)
-```
-
 ### Introduction
 
 An introduction of the problem domain and a description of the variable(s) you are choosing to analyze (and why!)
